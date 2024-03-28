@@ -128,11 +128,11 @@ def venda_mt5():
         print(f'2. ordem de venda executada')
         print()
 
-def gerador_posicao_atual():
+def gerador():
     for tuplas in mt5.positions_get(symbol=symbol):
         yield dict(tuplas._asdict())
 
-def gerador_historico_diario():
+def gerador_saldo_diario():
     inicio = datetime.today()
     inicio = datetime(inicio.year, inicio.month, inicio.day)
     fim = datetime.now()
@@ -221,7 +221,7 @@ def saldo_diario():
     """
     saldo = float(0)
 
-    for itens in gerador_historico_diario():
+    for itens in gerador_saldo_diario():
         if itens['magic'] == 123456 and itens['entry'] == 1:
             saldo += itens['profit']
 
@@ -265,7 +265,7 @@ def qtd_posicionado():
 def volume_contratos():
     total = 0
 
-    for i in gerador_historico_diario():
+    for i in gerador_saldo_diario():
         if i['magic'] == 123456:
             total += i['volume']
 
