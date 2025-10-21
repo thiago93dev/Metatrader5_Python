@@ -6,7 +6,7 @@ symbol = str('WING24')
 qtd_contratos = float(7)
 
 def inicia_conexao():
-    if not mt5.initialize(path=r'C:\Program Files\Meta Trader 5 conta real\terminal64.exe', login=456321, server='server_corretora', password='teste'):
+    if not mt5.initialize(path=r'C:\Program Files\Meta Trader 5 conta real\terminal64.exe'):
         print(f'Erro na inicialização, código do erro = {mt5.last_error()}')
         quit()
 
